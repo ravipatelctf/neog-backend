@@ -8,7 +8,11 @@ const studentSchema = new mongoose.Schema({
     class: String,
     emergencyContact: Number,
     studentProfileImageUrl: String,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const Student = mongoose.model("Student", studentSchema);
 

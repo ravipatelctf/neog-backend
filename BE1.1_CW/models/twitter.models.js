@@ -12,7 +12,11 @@ const twitterSchema = new mongoose.Schema({
     followersCount: Number,
     followingCount: Number,
     isOnline: Boolean,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const Twitter = mongoose.model("Twitter", twitterSchema);
 
