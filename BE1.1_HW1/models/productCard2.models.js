@@ -15,7 +15,11 @@ const productCard2Schema = new mongoose.Schema({
     rating: Number,
     ratingCount: Number,
     reviewsCount: Number,
-});
+},
+{
+    timestamps: true,
+}
+);
 
 const ProductCard2 = mongoose.model("ProductCard2", productCard2Schema);
 

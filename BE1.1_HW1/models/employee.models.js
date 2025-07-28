@@ -9,7 +9,11 @@ const employeeSchema = new mongoose.Schema({
     email: String,
     telephoneNumber: Number,
     address: String,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const Employee = mongoose.model("Employee", employeeSchema);
 

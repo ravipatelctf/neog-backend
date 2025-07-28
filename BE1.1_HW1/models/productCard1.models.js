@@ -16,7 +16,11 @@ const poductCard1Schema = new mongoose.Schema({
         default: 9,
     },
     productPrice: Number,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const ProductCard1 = mongoose.model("ProductCard1", poductCard1Schema);
 

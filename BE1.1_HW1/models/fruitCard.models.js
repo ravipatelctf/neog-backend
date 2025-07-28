@@ -9,7 +9,11 @@ const fruitCardSchema = new mongoose.Schema({
     proteinInFruit: Number,
     unsaturatedFatInFruit: Number,
     isLiked: Boolean,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const FruitCard = mongoose.model("FruitCard", fruitCardSchema);
 
