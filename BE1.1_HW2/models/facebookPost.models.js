@@ -8,7 +8,11 @@ const facebookPostRecipe = new mongoose.Schema({
     likesCount: Number,
     commentsCount: Number,
     sharesCount: Number,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const FacebookPost = mongoose.model("FacebookPost", facebookPostRecipe);
 

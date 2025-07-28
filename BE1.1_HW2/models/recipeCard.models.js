@@ -11,7 +11,11 @@ const recipeCardSchema = new mongoose.Schema({
     }],
     directions: String,
     notes: String,
-});
+},
+{
+    timestamps: true,
+},
+);
 
 const RecipeCard = mongoose.model("RecipeCard", recipeCardSchema);
 
