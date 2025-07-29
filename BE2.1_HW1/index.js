@@ -28,5 +28,4 @@ async function createRestaurant(newRestaurant) {
         throw error;
     }
 }
-
-createData(newRestaurant);
+createRestaurant(newRestaurant);
