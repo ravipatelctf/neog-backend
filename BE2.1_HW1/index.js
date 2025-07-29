@@ -19,7 +19,7 @@ const newRestaurant = {
   photos: ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
 };
 
-async function createData(newRestaurant) {
+async function createRestaurant(newRestaurant) {
     try {
         const restaurant = new Restaurant(newRestaurant);
         const saveRestaurant = await restaurant.save();
