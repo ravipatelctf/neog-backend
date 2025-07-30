@@ -16,7 +16,7 @@ const updateRestaurantRating = async (restaurantId, dataToUpdate) => {
     }
 };
 
-// updateRestaurantRating("6888b6ff2df6c12fab93d115", {rating: 4.1});
+updateRestaurantRating("6888b6ff2df6c12fab93d115", {rating: 4.1});
 
 
 /*
@@ -32,7 +32,7 @@ const updateRestaurantName = async (restaurantName, dataToUpdate) => {
     }
 }
 
-// updateRestaurantName("Somi", {name: "Som Sarovar"});
+updateRestaurantName("Somi", {name: "Som Sarovar"});
 
 
 /*
