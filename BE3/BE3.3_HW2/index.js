@@ -32,7 +32,7 @@ app.delete("/movies/:id", (req, res) => {
         res.status(400).json({error: "Movie Not Found!"});
     } else {
         movies.splice(index, 1);
-        res.status(200).json
+        res.status(200).json({message: "Movie deleted successfully."});
     }
 });
 
