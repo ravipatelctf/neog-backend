@@ -24,7 +24,7 @@ app.post("/cars/:id", (req, res) => {
             Object.assign(carToUpdate, updatedCarData);
             res
                 .status(200)
-                .json({message: "Car Data Added Successfully.", car: carToUpdate});
+                .json({message: "Car Data Updated Successfully.", car: carToUpdate});
         }
     }
 });
