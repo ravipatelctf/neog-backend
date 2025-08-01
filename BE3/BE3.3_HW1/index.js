@@ -1,6 +1,8 @@
 const express = require("express");
 require("dotenv").config();
+
 const app = express();
+app.use(express.json());
 
 /*
 1. Write a GET route "/" which sends a message "Hello, From Express Server.". Test your API with Postman.
