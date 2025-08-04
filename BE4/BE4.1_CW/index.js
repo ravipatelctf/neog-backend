@@ -97,7 +97,7 @@ app.get("/movies/director/:director", async (req, res) => {
     }
 });
 
-// ------------------------------------------------------------------
+// -----------------------------4-------------------------------------
 
 async function readMovieByGenre(genre) {
     try {
