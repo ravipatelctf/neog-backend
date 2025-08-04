@@ -1,11 +1,13 @@
+const express = require("express");
+require("dotenv").config();
+
 const {initializeDatabase} = require("./db/db.connect");
 const Movie = require("./models/movie.models");
 
-const express = require("express");
 const app = express();
 app.use(express.json());
 
-initializeDatabase();           
+initializeDatabase();
 
 async function createMovie(newMovie) {
     try {
@@ -16,6 +18,7 @@ async function createMovie(newMovie) {
         throw error;
     }
 }
+
 
 app.post("/movies", async (req, res) => {
     try {
@@ -30,7 +33,7 @@ app.post("/movies", async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
     console.log(`Server is running at http://localhost:${PORT}`);
 });
