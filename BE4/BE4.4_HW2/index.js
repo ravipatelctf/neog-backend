@@ -1,57 +1,46 @@
 const {initializeDatabase} = require("./db/db.connect");
 const Hotel = require("./models/hotel.models");
 
+require("dotenv").config();
+const express = require("express");
+const app = express();
+app.use(express.json());
+
 initializeDatabase();
 
 /*
-1. Create a function that accepts a hotel ID and an object with updated data, and updates the hotel data with the provided ID. Take the _id of the hotel from your database which has the name Lake View and update its checkOutTime to 11 AM. Console the updated hotel.
+1. Create an API to update a hotel data by their ID in the Database. Update the rating of an existing hotel. Test your API with Postman.
 
 */
-
-
-const updateHotelCheckOutTime = async (hotelId, dataToUpdate) => {
+const updateHotelRating = async (hotelId, dataToUpdate) => {
     try {
         const updatedHotel = await Hotel.findByIdAndUpdate(hotelId, dataToUpdate, {new: true});
-        console.log(updatedHotel);
+        return updatedHotel;
     } catch (error) {
         throw error;
     }
 };
 
-updateHotelCheckOutTime("6888c4295994d325ccf2cfb0", {checkOutTime: "11:00 AM"});
-
-
-/*
-2. Create a function that accepts a hotel name and an object with updated data, and updates the hotel data. Take the hotel which has the name "Sunset Resort" and update its rating to 4.2. Console the updated hotel.
-
-*/
-
-
-const updateHotelRating = async (name, dataToUpdate) => {
+app.post("/hotels/:hotelId", async (req, res) => {
     try {
-        const updatedHotel = await Hotel.findOneAndUpdate({name}, dataToUpdate, {new: true});
-        console.log(updatedHotel);
+        const updatedHotel = await updateHotelRating(req.params.hotelId, req.body);
+        if(updatedHotel) {
+            res
+                .status(200)
+                .json({message: "Hotel updated successfully.", updatedHotel: updatedHotel});
+        } else {
+            res
+                .status(404)
+                .json({error: "Hotel Not Found!"});
+        }
     } catch (error) {
-        throw error;
+        res
+            .status(500)
+            .json({error: "Failed to update hotel!"});
     }
-};
+});
 
-updateHotelRating("Sunset Resort", {rating: 4.2});
-
-
-/*
-3. Create a function that accepts a hotel's phone number and an object with updated data, and updates the hotel data. Take the hotel which has the phone number "+1299655890" and update its phone number  to "+1997687392". Console the updated hotel details.
-
-*/
-
-
-const updateHotelPhoneNumber = async (phoneNumber, dataToUpdate) => {
-    try {
-        const updatedHotel = await Hotel.findOneAndUpdate({phoneNumber}, dataToUpdate, {new: true});
-        console.log(updatedHotel);
-    } catch (error) {
-        throw error;
-    }
-};
-
-updateHotelPhoneNumber("+1299655890", {phoneNumber: "+1997687392"});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running at http://localhost:${PORT}`);
+});
