@@ -49,28 +49,28 @@ app.get("/hotels", async (req, res) => {
 async function readByHotelName(hotelName) {
     try {
         const hotel = await Hotel.findOne({name: hotelName});
-        return restaurant;
+        return hotel;
     } catch (error) {
         throw error;
     }
 }
 
-app.get("/restaurants/:restaurantName", async (req, res) => {
+app.get("/hotels/:hotelName", async (req, res) => {
     try {
-        const restaurant = await readByRestaurantName(req.params.restaurantName);
-        if (restaurant) {
+        const hotel = await readByHotelName(req.params.hotelName);
+        if (hotel) {
             res
                 .status(200)
-                .send(restaurant);
+                .send(hotel);
         } else {
             res
                 .status(404)
-                .json({error: "Restaurant Not Found!"});
+                .json({error: "Hotel Not Found!"});
         }
     } catch (error) {
         res
             .status(500)
-            .json({error: "Error fetching restaurants data!"});
+            .json({error: "Error fetching hotel data!"});
     }
 })
 
@@ -78,100 +78,100 @@ app.get("/restaurants/:restaurantName", async (req, res) => {
 
 // ------------------------------------3--------------------------------------
 /*
-3. Create an API with route "/restaurants/directory/:phoneNumber" to read a restaurant by phone number. Test your API with Postman.
+3. Create an API with route "/hotels/directory/:phoneNumber" to read a hotel by phone number. Test your API with Postman.
 
 */
 async function readByPhoneNumber(phoneNumber) {
     try {
-        const restaurant = await Restaurant.findOne({phoneNumber: phoneNumber});
-        return restaurant;
+        const hotel = await Hotel.findOne({phoneNumber: phoneNumber});
+        return hotel;
     } catch (error) {
         throw error;
     }
 }
 
-app.get("/restaurants/directory/:phoneNumber", async (req, res) => {
+app.get("/hotels/directory/:phoneNumber", async (req, res) => {
     try {
-        const restaurant = await readByPhoneNumber(req.params.phoneNumber);
-        if (restaurant) {
+        const hotel = await readByPhoneNumber(req.params.phoneNumber);
+        if (hotel) {
             res
                 .status(200)
-                .send(restaurant);
+                .send(hotel);
         } else {
             res
                 .status(404)
-                .json({error: "Restaurant Not Found!"});
+                .json({error: "Hotel Not Found!"});
         }
     } catch (error) {
         res
             .status(500)
-            .json({error: "Error fetching restaurants data!"});
+            .json({error: "Error fetching hotel data!"});
     }
 })
 
 // ------------------------------------4--------------------------------------
 /*
-4. Create an API with route "/restaurants/cuisine/:cuisineName" to read all restaurants by cuisine. Test your API with Postman.
+4. Create an API with route "/hotels/rating/:hotelRating" to read all hotels by rating. Test your API with Postman.
 
 */
-async function readByCuisine(cuisineName) {
+async function readByRating(rating) {
     try {
-        const restaurant = await Restaurant.findOne({cuisine: cuisineName});
-        return restaurant;
+        const hotel = await Hotel.findOne({rating: rating});
+        return hotel;
     } catch (error) {
         throw error;
     }
 }
 
-app.get("/restaurants/cuisine/:cuisineName", async (req, res) => {
+app.get("/hotels/rating/:hotelRating", async (req, res) => {
     try {
-        const restaurant = await readByCuisine(req.params.cuisineName);
-        if (restaurant) {
+        const hotel = await readByRating(req.params.hotelRating);
+        if (hotel) {
             res
                 .status(200)
-                .send(restaurant);
+                .send(hotel);
         } else {
             res
                 .status(404)
-                .json({error: "Restaurant Not Found!"});
+                .json({error: "Hotel Not Found!"});
         }
     } catch (error) {
         res
             .status(500)
-            .json({error: "Error fetching restaurants data!"});
+            .json({error: "Error fetching hotel data!"});
     }
 })
 
 // ------------------------------------5--------------------------------------
 /*
-5. Create an API with route "/restaurants/location/:restaurantLocation" to read all restaurants by location. Test your API with Postman.
+5. Create an API with route "/hotels/category/:hotelCategory" to read all hotels by category. Test your API with Postman.
 
 */
-async function readAllRestaurantsByLocation(restaurantLocation) {
+async function readByCategory(category) {
     try {
-        const allRestaurants = await Restaurant.find({location: restaurantLocation});
-        return allRestaurants;
+        const hotels = await Hotel.find({category: category});
+        return hotels;
     } catch (error) {
         throw error;
     }
 }
 
-app.get("/restaurants/location/:restaurantLocation", async (req, res) => {
+app.get("/hotels/category/:hotelCategory", async (req, res) => {
     try {
-        const restaurants = await readAllRestaurantsByLocation(req.params.restaurantLocation);
-        if (restaurants.length != 0) {
+        const hotels = await readByCategory(req.params.hotelCategory);
+        if (hotels.length != 0) {
             res
                 .status(200)
-                .send(restaurants);
+                .send(hotels);
         } else {
             res
                 .status(404)
-                .json({error: "Restaurant Not Found!"});
+                .json({error: "Hotel Not Found!"});
         }
     } catch (error) {
         res
             .status(500)
-            .json({error: "Error fetching restaurant data!"});
+            .json({error: "Error fetching hotel data!"});
     }
 });
 
