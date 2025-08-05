@@ -5,8 +5,8 @@ initializeDatabase();
 
 require("dotenv").config();
 const express = require("express");
-
 const app = express();
+
 app.use(express.json());
 
 
@@ -149,7 +149,7 @@ app.get("/books/author/:authorName", async (req, res) => {
 6. Create an API to get all the books which are of "Business" genre.
 
 */
-async function readBookByGenre(bookGenre) {
+async function readBooksByGenre(bookGenre) {
     try {
         const books = await Book.find({genre: bookGenre});
         return books;
@@ -160,7 +160,7 @@ async function readBookByGenre(bookGenre) {
 
 app.get("/books/genre/:bookGenre", async (req, res) => {
     try {
-        const books = await readBookByGenre(req.params.bookGenre);
+        const books = await readBooksByGenre(req.params.bookGenre);
         res
             .status(200)
             .json({message: "Books fetched succesfully.", books: books});
