@@ -176,7 +176,7 @@ app.get("/recipes", async (req, res) => {
         if (recipes) {
             res
                 .status(200)
-                .send({message: "Recipes fetched succesfully.", recipes: recipes});
+                .json({message: "Recipes fetched succesfully.", recipes: recipes});
         } else {
             res
                 .status(404)
